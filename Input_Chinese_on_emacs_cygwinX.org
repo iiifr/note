@@ -1,5 +1,5 @@
-* 使用uim作為cygwinX的中文輸入法
-cygwinX下的中文輸入是有問題的，以下這些方法讓你能在cygwinX下的emacs-X11中輸入中文，但cygwinX下的其他GUI程式無法正常使用uim
+* 使用uim作為cygwinX內emacs的中文輸入法
+cygwinX下的中文輸入是有問題的，以下這些方法讓你能在cygwinX下的emacs-X11中輸入中文，但cygwinX下的其他GUI程式並無法正常使用uim
 1) 確保cygwin有以下工具
  + libqt3
  + libqt3-devel
@@ -79,7 +79,7 @@ cygwinX下的中文輸入是有問題的，以下這些方法讓你能在cygwinX
 10) 將 /usr/bin 中的 uim-xim 和 uim-toolbar-gtk3-systray(或uim-toolbar-gtk3) 指定為一開始時自動執行(Startup application)
 11) 將uim編譯資料夾中的emacs/uim.el複製到.emacs.d的適當位置，並在init.el中加上 =(require 'uim)=
 12) 開啟uim preference(uim-pref-gtk)，設定適當的輸入法與hotkey
-* 安裝並編譯 uim-chewing
+* 安裝並編譯 uim-chewing (uim上使用新酷音)
 1) 確定cygwin已安裝libchewing，且uim已安裝完成
 2) 取得uim-chewing source code (=git clone https://github.com/uim/uim-chewing.git=)
 3) 在資料夾uim-chewing 執行 =autoheader=

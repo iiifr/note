@@ -92,6 +92,8 @@ cygwinX下的中文輸入是有問題的，以下這些方法讓你能在cygwinX
 10) 在根資料夾，src資料夾，scm資料夾，pixmap資料夾下的Makefile中的 =LDFLAGS= MACRO添加 =-no-undefined=
 11) 在pixmap資料夾下，用inkscape將兩個svg產生同名的png
 12) =make= 與 =make install=
+13) 執行指令 =uim-module-manager --register chewing=
+14) 執行 =uim-pref-gtk &!= ，將chewing設成enabled
 * 參考連結
  + [[http://kichi2496.blog.fc2.com/blog-entry-19.html]] (uim如何在cygwinX上編譯成功，是參考此篇而來)
  + https://github.com/uim/uim (github上的uim)

@@ -1,0 +1,101 @@
+* 使用uim作為cygwinX內emacs的中文輸入法
+cygwinX下的中文輸入是有問題的，以下這些方法讓你能在cygwinX下的emacs-X11中輸入中文，但cygwinX下的其他GUI程式並無法正常使用uim
+1) 確保cygwin有以下工具
+ + libqt3
+ + libqt3-devel
+ + libgtk2-devel
+ + libgtk3-devel
+ + libgtk2
+ + libgtk3
+ + libXext
+ + libXext-devel
+ + libX11-devel
+ + automake
+ + libtool
+ + pkg-config
+ + ruby
+ + git
+ + gcc
+ + GNU make
+ + iconv-devel
+ + iconv
+ + gettext
+ + intltool 
+2) 下載uim-1.8.6 tarball
+3) 對某些資料夾重新automake
+ 1) 在sigscheme/libgcroots/Makefile.am中的 =libgcroots_la_LDFLAGS= 多加 =-no-undefined= ，並在sigscheme/libgcroots中執行automake
+ 2) 在以下MACRO中增加 =-no-undefined= 後，在根資料夾執行automake
+    + notify/Makefile.am中的 =libuimnotify_libnotify_la_LDFLAGS=, =libuimnotify_knotify_la_LDFLAGS=, =libuimnotify_knotify3_la_LDFLAGS=
+    + uim/Makefile.am中任何的 =lib*_la_LDFLAGS=
+    + 在replace/Mafile.am 中新建 =libreplace_la_LDFLAGS= MACRO，並指定為 =-no-undefined=
+4) 執行 ~./configure --prefix=/usr --with-gtk3 --enable-pref~
+5) 更改 sigcheme/libgcroots/include/private/gcconfig.h
+ 
+ 在sigcheme/libgcroots/include/private/gcconfig.h中找到以下code
+ #+BEGIN_SRC C
+ # if defined(__LP64__) || defined(_WIN64)
+ # error This should be handled as X86_64
+ # else
+ # define CPP_WORDSZ 32
+ # define ALIGNMENT 4
+ /* Appears to hold for all "32 bit" compilers */
+ /* except Borland. The -a4 option fixes */
+ /* Borland. */
+ /* Ivan Demakov: For Watcom the option is -zp4. */
+ # endif
+ #+END_SRC
+ 直接改成:
+ #+BEGIN_SRC C
+ # define CPP_WORDSZ 32
+ # define ALIGNMENT 4
+ #+END_SRC
+6) 更改一些Makefile
+ + 在gtk2/pref/Makefile中尋找MACRO =uim_pref_gtk_LDADD= ，並將其中 =$(am__append_1)= 上移一行
+ + 在gtk3/pref/Makefile中尋找MACRO =uim_pref_gtk3_LDADD= ，並將其中 =$(am__append_1)= 上移一行
+7) 更改 scm/dynlib.scm
+ 
+ 搜尋以下(有2處)
+ #+BEGIN_EXAMPLE
+ "/libuim-" dynlib-name ".so"
+ #+END_EXAMPLE
+ 並改成:
+ #+BEGIN_EXAMPLE
+ "/cyguim-" dynlib-name ".dll"
+ #+END_EXAMPLE
+8) 執行 =make= 與 =make install=
+ 
+ 完成後，uim便已編譯並安裝完成
+9) 編輯 /etc/profile
+
+ 在/etc/profile中增加以下:
+ #+BEGIN_EXAMPLE
+ GTK_IM_MODULE="uim"; export GTK_IM_MODULE
+ XMODIFIERS="@im=uim"; export XMODIFIERS
+ QT_IM_MODULE="xim"; export QT_IM_MODULE
+ XIM="uim-xim"; export XIM
+ UIM_CANDWIN_PROG=uim-candwin-gtk; export UIM_CANDWIN_PROG
+ #+END_EXAMPLE
+
+10) 將 /usr/bin 中的 uim-xim 和 uim-toolbar-gtk3-systray(或uim-toolbar-gtk3) 指定為一開始時自動執行(Startup application)
+11) 將uim編譯資料夾中的emacs/uim.el複製到.emacs.d的適當位置，並在init.el中加上 =(require 'uim)=
+12) 開啟uim preference(uim-pref-gtk)，設定適當的輸入法與hotkey
+* 安裝並編譯 uim-chewing (uim上使用新酷音)
+1) 確定cygwin已安裝libchewing，且uim已安裝完成
+2) 取得uim-chewing source code (=git clone https://github.com/uim/uim-chewing.git=)
+3) 在資料夾uim-chewing 執行 =autoheader=
+4) 在資料夾uim-chewing 執行 =libtoolize=
+5) 在資料夾uim-chewing 執行 =aclocal=
+6) 在資料夾uim-chewing 執行 =autoconf=
+7) 在資料夾uim-chewing 執行 =automake --add-missing=
+8) 在資料夾uim-chewing 執行 =automake=
+9) 在資料夾uim-chewing 執行 =./configure=
+10) 在根資料夾，src資料夾，scm資料夾，pixmap資料夾下的Makefile中的 =LDFLAGS= MACRO添加 =-no-undefined=
+11) 在pixmap資料夾下，用inkscape將兩個svg產生同名的png
+12) =make= 與 =make install=
+* 參考連結
+ + [[http://kichi2496.blog.fc2.com/blog-entry-19.html]] (uim如何在cygwinX上編譯成功，是參考此篇而來)
+ + https://github.com/uim/uim (github上的uim)
+ + https://github.com/uim/uim/wiki/InstallUim (uim的安裝指南)
+ + https://code.google.com/archive/p/uim/downloads (uim tarball)
+ + https://github.com/uim/uim-chewing (github上的uim-chewing，README.md內有提供一些編譯說明)
+ + https://github.com/uim/uim-chewing/releases (uim-chewing tarball)

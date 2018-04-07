@@ -4,7 +4,7 @@
 *** /C-x C-e/
    執行（eval）該 Lisp 表達式
 *** /M-!/
-  執行外部指令(synchronously)
+   執行外部指令(synchronously)
 
 ** 常用Elisp function (透過M-x呼叫)
 *** /M-x/
@@ -25,6 +25,8 @@
    web browser
 *** /M-x <RET> eww-open-file/
    open a html file
+*** /M-x <RET> revert-buffer/
+   對此buffer重新載入file
 
 ** 查詢Emacs內部文件
 *** /C-h f/

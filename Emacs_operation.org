@@ -1,167 +1,167 @@
-* 基礎操作
-** /C-g/
-  放棄動作
-** /C-x C-e/
-  執行（eval）該 Lisp 表達式
-** /M-!/
- 執行外部指令(synchronously)
+** 基礎操作
+*** /C-g/
+   放棄動作
+*** /C-x C-e/
+   執行（eval）該 Lisp 表達式
+*** /M-!/
+  執行外部指令(synchronously)
 
-* 常用Elisp function (透過M-x呼叫)
-** /M-x/
-  執行輸入的"execute-extended-command"
-** /M-x <RET> eshell/
-  在emacs跑terminal
-** /M-x <RET> package-list-packages/ 或 /M-x <RET> list-packages/
-  套件管理
-** /M-x <RET> desktop-save/
-  save buffer sessions
-** /M-x <RET> desktop-read/
-  restore buffer sessions
-** /M-x replace-string <RET> string <RET> newstring <RET>/
-  Replace every occurrence of string with newstring.
-** /M-x <RET> eval-buffer/
-  evaluate all elisp expression in buffer
-** /M-x <RET> eww/
-  web browser
-** /M-x <RET> eww-open-file/
-  open a html file
+** 常用Elisp function (透過M-x呼叫)
+*** /M-x/
+   執行輸入的"execute-extended-command"
+*** /M-x <RET> eshell/
+   在emacs跑terminal
+*** /M-x <RET> package-list-packages/ 或 /M-x <RET> list-packages/
+   套件管理
+*** /M-x <RET> desktop-save/
+   save buffer sessions
+*** /M-x <RET> desktop-read/
+   restore buffer sessions
+*** /M-x replace-string <RET> string <RET> newstring <RET>/
+   Replace every occurrence of string with newstring.
+*** /M-x <RET> eval-buffer/
+   evaluate all elisp expression in buffer
+*** /M-x <RET> eww/
+   web browser
+*** /M-x <RET> eww-open-file/
+   open a html file
 
-* 查詢Emacs內部文件
-** /C-h f/
-  查詢某function 的用途、文件與該function在目前的buffer中所bind到的key-binding等資訊
-** /C-h v/
-  查詢某variable的用途、文件
-** /C-h l/
-  查詢某library的用途、文件
-** /C-h m/
-  查詢在目前的buffer中、啟動了哪一個 major-mode、哪些 minor-modes、以及所有可用的key-bindings
-** /C-h k <any key-binding>/
-  (k代表key-binding)按下任意key-binding，可以查詢其key-binding在目前buffer下所綁定到的function
-** /C-h b/
-  列出此buffer的所有key binding
-** /<Any prefix key> C-h/
-  可以得知目前 buffer 下，以該prefix key為開頭的所有可用的key-bindings，如: C-x C-h
+** 查詢Emacs內部文件
+*** /C-h f/
+   查詢某function 的用途、文件與該function在目前的buffer中所bind到的key-binding等資訊
+*** /C-h v/
+   查詢某variable的用途、文件
+*** /C-h l/
+   查詢某library的用途、文件
+*** /C-h m/
+   查詢在目前的buffer中、啟動了哪一個 major-mode、哪些 minor-modes、以及所有可用的key-bindings
+*** /C-h k <any key-binding>/
+   (k代表key-binding)按下任意key-binding，可以查詢其key-binding在目前buffer下所綁定到的function
+*** /C-h b/
+   列出此buffer的所有key binding
+*** /<Any prefix key> C-h/
+   可以得知目前 buffer 下，以該prefix key為開頭的所有可用的key-bindings，如: C-x C-h
 
-* 編輯操作
-** /C-// 或 /C-_/ 或 /C-x u/
- Undo
-** /C-g C-// 或 /C-g C-_/
- Redo
-** /C-a/
- 跳到行首
-** /C-e/
- 跳到行尾
-** /M-g M-g/
- 可輸入要跳到第?行
-** /M-</
- 跳到文件最頂端
-** /M->/
- 跳到文件最尾端
-** /C-l/
- 畫面與游標位置對齊（重複按可對齊三種位置)
-** /M-PageDown/
- 隔壁的 window 向下捲動一頁
-** /M-PageUp/
- 隔壁的 window 向上捲動一頁
-** /C-k/
- 從目前游標 kill 到行尾（並將被 kill 掉的部份丟入 kill-ring）
-** /C-S-Backspace/
- 刪掉整行
-** /C-u 5 C-S-backspace/ 或 /M-5 C-S-backspace/
- deletes 5 whole lines
-** /C-u C-S-backspace/
- delete 4 whole lines. C-u without a number defaults to 4
-** /C-u -5 C-S-backspace/ 或 /M--5 C-S-backspace/
- deletes previous 5 whole lines (M--5 Meta持續按著並輸入-與5)
-** /C-@/ 或 /C-SPC/
- 標記選取範圍的頭， /C-SPC/ 嘗試預設的輸入法toggle hotkey，所以 /C-SPC/ 常失效
-** /Mouse-3/
- 選取範圍，從之前的cursor位置至Mouse-3所點位置
-** /C-x C-x/
- 跳到選取範圍的開頭/尾端
-** /M-w/
- 複製目前選取區域
-** /C-w/
- 剪下目前選取區域
-** /C-y/
- 把最近一次被 Kill 掉的文字從 Kill-ring 給拉(Yank)出來
-** /C-y (M-y)*/
- 按 N 下 M-y 可以從 Kill-ring yank出更早的字串
-** /C-x z/
-  repeat last command(包含輸入的字串也算一次command)
-** /z*/ (after /C-x z/)
-  在 /C-x z/ 後持續按下 /z/ ，可一直重複執行last command
+** 編輯操作
+*** /C-// 或 /C-_/ 或 /C-x u/
+  Undo
+*** /C-g C-// 或 /C-g C-_/
+  Redo
+*** /C-a/
+  跳到行首
+*** /C-e/
+  跳到行尾
+*** /M-g M-g/
+  可輸入要跳到第?行
+*** /M-</
+  跳到文件最頂端
+*** /M->/
+  跳到文件最尾端
+*** /C-l/
+  畫面與游標位置對齊（重複按可對齊三種位置)
+*** /M-PageDown/
+  隔壁的 window 向下捲動一頁
+*** /M-PageUp/
+  隔壁的 window 向上捲動一頁
+*** /C-k/
+  從目前游標 kill 到行尾（並將被 kill 掉的部份丟入 kill-ring）
+*** /C-S-Backspace/
+  刪掉整行
+*** /C-u 5 C-S-backspace/ 或 /M-5 C-S-backspace/
+  deletes 5 whole lines
+*** /C-u C-S-backspace/
+  delete 4 whole lines. C-u without a number defaults to 4
+*** /C-u -5 C-S-backspace/ 或 /M--5 C-S-backspace/
+  deletes previous 5 whole lines (M--5 Meta持續按著並輸入-與5)
+*** /C-@/ 或 /C-SPC/
+  標記選取範圍的頭， /C-SPC/ 嘗試預設的輸入法toggle hotkey，所以 /C-SPC/ 常失效
+*** /Mouse-3/
+  選取範圍，從之前的cursor位置至Mouse-3所點位置
+*** /C-x C-x/
+  跳到選取範圍的開頭/尾端
+*** /M-w/
+  複製目前選取區域
+*** /C-w/
+  剪下目前選取區域
+*** /C-y/
+  把最近一次被 Kill 掉的文字從 Kill-ring 給拉(Yank)出來
+*** /C-y (M-y)*/
+  按 N 下 M-y 可以從 Kill-ring yank出更早的字串
+*** /C-x z/
+   repeat last command(包含輸入的字串也算一次command)
+*** /z*/ (after /C-x z/)
+   在 /C-x z/ 後持續按下 /z/ ，可一直重複執行last command
 
-* Search/narrowing framework
-** original emacs
-*** /C-s/
-   普通字串搜尋（繼續按 C-s 搜尋下一個，按 C-r 搜尋上一個，若是用ivy，C-s C-r就別用）
-*** /C-M-s/
-   Regexp 搜尋 （一樣，也是繼續按 C-s 搜尋下一個）
-*** /M-%/
-   字串搜尋並取代
-*** /M-% !/
-   replace all from cursor
-** using ivy
-*** /C-s/
-   普通字串/Regexp 搜尋 (C-n C-p 搜尋 下 上 一個）
-*** /M-q/ (after /C-s/)
-   字串取代，要取代的按 /y/ ，不要的按 /n/ ，按 /!/ 從cursor之後的occurence全取代， /C-g/ 放棄操作
-*** /C-j/ 或 /<TAB> <TAB>/ (在minibuffer中使用)
-   補完光標所選的candidate
+** Search/narrowing framework
+*** original emacs
+**** /C-s/
+    普通字串搜尋（繼續按 C-s 搜尋下一個，按 C-r 搜尋上一個，若是用ivy，C-s C-r就別用）
+**** /C-M-s/
+    Regexp 搜尋 （一樣，也是繼續按 C-s 搜尋下一個）
+**** /M-%/
+    字串搜尋並取代
+**** /M-% !/
+    replace all from cursor
+*** using ivy
+**** /C-s/
+    普通字串/Regexp 搜尋 (C-n C-p 搜尋 下 上 一個）
+**** /M-q/ (after /C-s/)
+    字串取代，要取代的按 /y/ ，不要的按 /n/ ，按 /!/ 從cursor之後的occurence全取代， /C-g/ 放棄操作
+**** /C-j/ 或 /<TAB> <TAB>/ (在minibuffer中使用)
+    補完光標所選的candidate
 
-* Buffer operation
-** /C-x k/
-  關掉目前 buffer 
-** /C-x b <NAME>/
-  切換到/開啟一個名為 NAME 的 buffer
-** /C-x C-b/
-  開啟 buffer 管理員
+** Buffer operation
+*** /C-x k/
+   關掉目前 buffer 
+*** /C-x b <NAME>/
+   切換到/開啟一個名為 NAME 的 buffer
+*** /C-x C-b/
+   開啟 buffer 管理員
 
-* Window operation
-** /C-x 0/
-  關掉目前 Window
-** /C-x 1/
-  將目前 Window 以外的所有 Window 關掉
-** /C-x 2/
-  水平分割 Window
-** /C-x 3/
-  垂直分割 Window
-** /C-x o/
-  切換到下一個 Window
+** Window operation
+*** /C-x 0/
+   關掉目前 Window
+*** /C-x 1/
+   將目前 Window 以外的所有 Window 關掉
+*** /C-x 2/
+   水平分割 Window
+*** /C-x 3/
+   垂直分割 Window
+*** /C-x o/
+   切換到下一個 Window
 
-* Emacs package: Winner mode (buffer/window layout(window config), undo redo)
-** /C-x C-<Left>/
-  Undo之前的layout與buffer
-** /C-x C-<Right>/
-  Redo原來的layout與buffer
+** Emacs package: Winner mode (buffer/window layout(window config), undo redo)
+*** /C-x C-<Left>/
+   Undo之前的layout與buffer
+*** /C-x C-<Right>/
+   Redo原來的layout與buffer
 
-* Emacs package: eyebrowse (buffer/window layout(window config), config manage)
-** /C-c C-w <Num>/
-  將現有window config存至config <Num> (<Num>可為0至9)
-** /C-c C-w "/
-  Close current window config
-** /C-c C-w ,/
-  Rename current window config
+** Emacs package: eyebrowse (buffer/window layout(window config), config manage)
+*** /C-c C-w <Num>/
+   將現有window config存至config <Num> (<Num>可為0至9)
+*** /C-c C-w "/
+   Close current window config
+*** /C-c C-w ,/
+   Rename current window config
 
-* Frame operation
-** /C-x 5 0/
-  Delete the selected frame (delete-frame)
-** /C-z/
-  Minimize (or iconify) the selected Emacs frame (suspend-frame)
-** /C-x 5 o/
-  Select another frame, and raise it
-** /C-x 5 1/ 
-  Delete all frames on the current terminal, except the selected one.
-** /C-x 5 2/
-  Create new frame
+** Frame operation
+*** /C-x 5 0/
+   Delete the selected frame (delete-frame)
+*** /C-z/
+   Minimize (or iconify) the selected Emacs frame (suspend-frame)
+*** /C-x 5 o/
+   Select another frame, and raise it
+*** /C-x 5 1/ 
+   Delete all frames on the current terminal, except the selected one.
+*** /C-x 5 2/
+   Create new frame
 
-* 在speedbar
-** /f/
-  切至file mode(可選file)
-** /b/
-  切至buffer mode(可選buffer)
-** /g/
-  update content
-** /k/ 
-  在buffer mode中，cursor移至某行buffer name， /k/ 可kill buffer
+** 在speedbar
+*** /f/
+   切至file mode(可選file)
+*** /b/
+   切至buffer mode(可選buffer)
+*** /g/
+   update content
+*** /k/ 
+   在buffer mode中，cursor移至某行buffer name， /k/ 可kill buffer

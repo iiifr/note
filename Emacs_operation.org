@@ -1,237 +1,237 @@
-** 基礎操作
-*** /C-g/
+* 基礎操作
+** /C-g/
 放棄動作
-*** /C-x C-e/
+** /C-x C-e/
 執行（eval）該 Lisp 表達式
-*** /M-!/
+** /M-!/
 執行外部指令(synchronously)
 
-** 常用Elisp function (透過M-x呼叫)
-*** /M-x/
+* 常用Elisp function (透過M-x呼叫)
+** /M-x/
 執行輸入的"execute-extended-command"
-*** /M-x <RET> eshell/
+** /M-x <RET> eshell/
 在emacs跑terminal
-*** /M-x <RET> package-list-packages/ 或 /M-x <RET> list-packages/
+** /M-x <RET> package-list-packages/ 或 /M-x <RET> list-packages/
 套件管理
-*** /M-x <RET> desktop-save/
+** /M-x <RET> desktop-save/
 save buffer sessions
-*** /M-x <RET> desktop-read/
+** /M-x <RET> desktop-read/
 restore buffer sessions
-*** /M-x replace-string <RET> string <RET> newstring <RET>/
+** /M-x replace-string <RET> string <RET> newstring <RET>/
 Replace every occurrence of string with newstring.
-*** /M-x <RET> eval-buffer/
+** /M-x <RET> eval-buffer/
 evaluate all elisp expression in buffer
-*** /M-x <RET> eww/
+** /M-x <RET> eww/
 web browser
-*** /M-x <RET> eww-open-file/
+** /M-x <RET> eww-open-file/
 open a html file
-*** /M-x <RET> revert-buffer/
+** /M-x <RET> revert-buffer/
 對此buffer重新載入file
 
-** 查詢Emacs內部文件
-*** /C-h f/
+* 查詢Emacs內部文件
+** /C-h f/
 查詢某function 的用途、文件與該function在目前的buffer中所bind到的key-binding等資訊
-*** /C-h v/
+** /C-h v/
 查詢某variable的用途、文件
-*** /C-h l/
+** /C-h l/
 查詢某library的用途、文件
-*** /C-h m/
+** /C-h m/
 查詢在目前的buffer中、啟動了哪一個 major-mode、哪些 minor-modes、以及所有可用的key-bindings
-*** /C-h k <any key-binding>/
+** /C-h k <any key-binding>/
 (k代表key-binding)按下任意key-binding，可以查詢其key-binding在目前buffer下所綁定到的function
-*** /C-h b/
+** /C-h b/
 列出此buffer的所有key binding
-*** /<Any prefix key> C-h/
+** /<Any prefix key> C-h/
 可以得知目前 buffer 下，以該prefix key為開頭的所有可用的key-bindings，如: C-x C-h
 
-** 編輯操作
-*** /C-// 或 /C-_/ 或 /C-x u/
+* 編輯操作
+** /C-// 或 /C-_/ 或 /C-x u/
 Undo
-*** /C-g C-// 或 /C-g C-_/
+** /C-g C-// 或 /C-g C-_/
 Redo
-*** /C-a/
+** /C-a/
 跳到行首
-*** /C-e/
+** /C-e/
 跳到行尾
-*** /M-g M-g/
+** /M-g M-g/
 可輸入要跳到第?行
-*** /M-</
+** /M-</
 跳到文件最頂端
-*** /M->/
+** /M->/
 跳到文件最尾端
-*** /C-l/
+** /C-l/
 畫面與游標位置對齊（重複按可對齊三種位置)
-*** /M-PageDown/
+** /M-PageDown/
 隔壁的 window 向下捲動一頁
-*** /M-PageUp/
+** /M-PageUp/
 隔壁的 window 向上捲動一頁
-*** /C-k/
+** /C-k/
 從目前游標 kill 到行尾（並將被 kill 掉的部份丟入 kill-ring）
-*** /C-S-Backspace/
+** /C-S-Backspace/
 刪掉整行
-*** /C-u 5 C-S-backspace/ 或 /M-5 C-S-backspace/
+** /C-u 5 C-S-backspace/ 或 /M-5 C-S-backspace/
 deletes 5 whole lines
-*** /C-u C-S-backspace/
+** /C-u C-S-backspace/
 delete 4 whole lines. C-u without a number defaults to 4
-*** /C-u -5 C-S-backspace/ 或 /M--5 C-S-backspace/
+** /C-u -5 C-S-backspace/ 或 /M--5 C-S-backspace/
 deletes previous 5 whole lines (M--5 Meta持續按著並輸入-與5)
-*** /C-@/ 或 /C-SPC/
+** /C-@/ 或 /C-SPC/
 標記選取範圍的頭， /C-SPC/ 嘗試預設的輸入法toggle hotkey，所以 /C-SPC/ 常失效
-*** /Mouse-3/
+** /Mouse-3/
 選取範圍，從之前的cursor位置至Mouse-3所點位置
-*** /C-x C-x/
+** /C-x C-x/
 跳到選取範圍的開頭/尾端
-*** /M-w/
+** /M-w/
 複製目前選取區域
-*** /C-w/
+** /C-w/
 剪下目前選取區域
-*** /C-y/
+** /C-y/
 把最近一次被 Kill 掉的文字從 Kill-ring 給拉(Yank)出來
-*** /C-y (M-y)*/
+** /C-y (M-y)*/
 按 N 下 M-y 可以從 Kill-ring yank出更早的字串
-*** /C-x z/
+** /C-x z/
 repeat last command(包含輸入的字串也算一次command)
-*** /z*/ (after /C-x z/)
+** /z*/ (after /C-x z/)
 在 /C-x z/ 後持續按下 /z/ ，可一直重複執行last command
 
-** Search/narrowing framework
-*** original emacs
-**** /C-s/
+* Search/narrowing framework
+** original emacs
+*** /C-s/
 普通字串搜尋（繼續按 C-s 搜尋下一個，按 C-r 搜尋上一個，若是用ivy，C-s C-r就別用）
-**** /C-M-s/
+*** /C-M-s/
 Regexp 搜尋 （一樣，也是繼續按 C-s 搜尋下一個）
-**** /M-%/
+*** /M-%/
 字串搜尋並取代
-**** /M-% !/
+*** /M-% !/
 replace all from cursor
-*** using ivy
-**** /C-s/
+** using ivy
+*** /C-s/
 普通字串/Regexp 搜尋 (C-n C-p 搜尋 下 上 一個）
-**** /M-q/ (after /C-s/)
+*** /M-q/ (after /C-s/)
 字串取代，要取代的按 /y/ ，不要的按 /n/ ，按 /!/ 從cursor之後的occurence全取代， /C-g/ 放棄操作
-**** /C-j/ 或 /<TAB> <TAB>/ (在minibuffer中使用)
+*** /C-j/ 或 /<TAB> <TAB>/ (在minibuffer中使用)
 補完光標所選的candidate
 
-** Buffer operation
-*** /C-x k/
+* Buffer operation
+** /C-x k/
 關掉目前 buffer 
-*** /C-x b <NAME>/
+** /C-x b <NAME>/
 切換到/開啟一個名為 NAME 的 buffer
-*** /C-x C-b/
+** /C-x C-b/
 開啟 buffer 管理員
 
-** Window operation
-*** /C-x 0/
+* Window operation
+** /C-x 0/
 關掉目前 Window
-*** /C-x 1/
+** /C-x 1/
 將目前 Window 以外的所有 Window 關掉
-*** /C-x 2/
+** /C-x 2/
 水平分割 Window
-*** /C-x 3/
+** /C-x 3/
 垂直分割 Window
-*** /C-x o/
+** /C-x o/
 切換到下一個 Window
 
-** Emacs package: Winner mode (buffer/window layout(window config), undo redo)
-*** /C-x C-<Left>/
+* Emacs package: Winner mode (buffer/window layout(window config), undo redo)
+** /C-x C-<Left>/
 Undo之前的layout與buffer
-*** /C-x C-<Right>/
+** /C-x C-<Right>/
 Redo原來的layout與buffer
 
-** Emacs package: eyebrowse (buffer/window layout(window config), config manage)
-*** /C-c C-w <Num>/
+* Emacs package: eyebrowse (buffer/window layout(window config), config manage)
+** /C-c C-w <Num>/
 將現有window config存至config <Num> (<Num>可為0至9)
-*** /C-c C-w "/
+** /C-c C-w "/
 Close current window config
-*** /C-c C-w ,/
+** /C-c C-w ,/
 Rename current window config
 
-** Frame operation
-*** /C-x 5 0/
+* Frame operation
+** /C-x 5 0/
 Delete the selected frame (delete-frame)
-*** /C-z/
+** /C-z/
 Minimize (or iconify) the selected Emacs frame (suspend-frame)
-*** /C-x 5 o/
+** /C-x 5 o/
 Select another frame, and raise it
-*** /C-x 5 1/ 
+** /C-x 5 1/ 
 Delete all frames on the current terminal, except the selected one.
-*** /C-x 5 2/
+** /C-x 5 2/
 Create new frame
 
-** 在speedbar
-*** /f/
+* 在speedbar
+** /f/
 切至file mode(可選file)
-*** /b/
+** /b/
 切至buffer mode(可選buffer)
-*** /g/
+** /g/
 update content
-*** /k/ 
+** /k/ 
 在buffer mode中，cursor移至某行buffer name， /k/ 可kill buffer
 
-** Org mode
-*** Headline
+* Org mode
+** Headline
 以數個*表示headline級別，*符號號要有至少一個空白，之後為headline內容
-**** /C-<return>/
+*** /C-<return>/
 在當前 headline 的內容(包括子headline內容)後建立一個同級 headline
-**** /M-<return>/
+*** /M-<return>/
 在當前 headline 後建立一個同級 headline
-**** /M-<right>/ 
+*** /M-<right>/ 
 降低當前 headline 的層級
-**** /M-<left>/ 
+*** /M-<left>/ 
 提高當前 headline 的層級
-**** /M-<up>/ 
+*** /M-<up>/ 
 將當前 headline 及其內容作為整體向上移動
-**** /M-<down>/
+*** /M-<down>/
 將當前 headline 及其內容作為整體向下移動
-**** /<TAB>/
+*** /<TAB>/
 對某個headline按TAB，可以及其內容的顯示在三種狀態(Folded, Children, Subtree)，此動作稱"subtree cycling"
 + Folded: 只顯示headline，內容全隱藏
 + Children: 顯示headline與其子headline，剩餘內容隱藏
 + Subtree: 全展開
-**** /S-<TAB>/
+*** /S-<TAB>/
 對整個 org 文件的內容顯示在三種狀態(Overview, Contents, Show all)中切換，此稱"global cycling"
 + Overview: 只顯示最大headline，內容全隱藏
 + Contents: 顯示所有級別headline，但內容皆隱藏
 + Show all: 全顯示
-**** /C-c */
+*** /C-c */
 將line變成headline，或變成plain text
-*** 列表(list)
+** 列表(list)
 + 無序列表(ordered list): 用 ~+~ 或 ~-~ 開頭，後跟隨用空格分隔開的列表項名稱、內容
 + 有序列表(unordered list): 用 ~1.~ 或 ~1)~ 開頭，後跟隨用空格分隔開的列表項名稱、內容
 + list項目底下也可以有sublist，藉由將list項目向內indent表示
-**** /M-<return>/
+*** /M-<return>/
 在當前列表項後建立一個同級列表項
-**** /M-<right>/
+*** /M-<right>/
 降低當前列表項的層級
-**** /M-<left>/
+*** /M-<left>/
 提高當前列表項的層級
-**** /M-<up>/
+*** /M-<up>/
 將當前列表項及其內容作為整體向上移動
-**** /M-<down>/
+*** /M-<down>/
 將當前列表項及其內容作為整體向下移動
-**** /C-c -/
+*** /C-c -/
 轉換list開頭的符號(也可以在有序、無序間轉換)
-*** 粗體、斜體、下劃線、刪除線
+** 粗體、斜體、下劃線、刪除線
 將要處理的文字用operator包起來，且第一個operator前要空白或有其他標點符號，第二個operator之後也是
-**** 粗體
+*** 粗體
 operator ~*~
-**** 斜體
+*** 斜體
 operator ~/~
-**** 下劃線
+*** 下劃線
 operator ~_~
-**** 刪除線
+*** 刪除線
 operator ~+~
-*** 文中插入block
-**** Inline block
+** 文中插入block
+*** Inline block
 用 =~= 或 ~=~ 把要顯示在inline block的文字包起來且第一個 ~=~ =~= 前要空白或operator，第二個 ~=~ =~= 之後也是
-**** 引用塊(BEGIN_QUOTE)
+*** 引用塊(BEGIN_QUOTE)
 輸入 =<q= 然後按 /<TAB>/
-**** 示例塊(BEGIN_EXAMPLE)
+*** 示例塊(BEGIN_EXAMPLE)
 輸入 =<e= 然後按 /<TAB>/
-**** 代碼塊(BEGIN_SRC)
+*** 代碼塊(BEGIN_SRC)
 輸入 =<s= 然後按 /<TAB>/ ，並且在BEGIN_SRC後空一格，並指定語言(如：C)
-*** In-buffer setting
+** In-buffer setting
 在開頭使用各種setting指定此文件的格式，如 ~#+TITLE:~ ~#+AUTHOR:~ ~#+EMAIL:~ ~#+LANGUAGE:~ ~#+DATE:~ ~#+SEQ_TODO:~ ，新加的設定要在line上用 /C-c C-c/ 才會馬上套用(~#+SEQ_TODO:~ 會用到)，查看:https://orgmode.org/manual/In_002dbuffer-settings.html
-*** 其他
-**** /org-indent-mode/  或在file開頭使用 ~#+STARTUP: indent~
+** 其他
+*** /org-indent-mode/  或在file開頭使用 ~#+STARTUP: indent~
 任何級別的headline下的plain text的indent是無意義的，要有好的indent可使用org-indent-mode，或在開頭指定setting ~#+STARTUP: indent~

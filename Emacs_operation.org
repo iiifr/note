@@ -3,6 +3,8 @@
 放棄動作
 ** /C-x C-e/
 執行（eval）該 Lisp 表達式
+** /C-x C-c/
+離開Emacs
 ** /M-!/
 執行外部指令(synchronously)
 
@@ -66,7 +68,9 @@ Redo
 ** /M-PageUp/
 隔壁的 window 向上捲動一頁
 ** /C-k/
-從目前游標 kill 到行尾（並將被 kill 掉的部份丟入 kill-ring）
+從目前游標 kill 到行尾(並將被 kill 掉的部份丟入 kill-ring)
+** /C-0 C-k/
+從目前游標 kill 到行頭(並將被 kill 掉的部份丟入 kill-ring)
 ** /C-S-Backspace/
 刪掉整行
 ** /C-u 5 C-S-backspace/ 或 /M-5 C-S-backspace/
@@ -88,7 +92,7 @@ deletes previous 5 whole lines (M--5 Meta持續按著並輸入-與5)
 ** /C-y/
 把最近一次被 Kill 掉的文字從 Kill-ring 給拉(Yank)出來
 ** /C-y (M-y)*/
-按 N 下 M-y 可以從 Kill-ring yank出更早的字串
+/C-y/ 後按 N 下 M-y 可以從 Kill-ring yank出更早的字串
 ** /C-x z/
 repeat last command(包含輸入的字串也算一次command)
 ** /z*/ (after /C-x z/)
@@ -133,9 +137,9 @@ replace all from cursor
 切換到下一個 Window
 
 * Emacs package: Winner mode (buffer/window layout(window config), undo redo)
-** /C-x C-<Left>/
+** /C-x <Left>/
 Undo之前的layout與buffer
-** /C-x C-<Right>/
+** /C-x <Right>/
 Redo原來的layout與buffer
 
 * Emacs package: eyebrowse (buffer/window layout(window config), config manage)
@@ -224,14 +228,14 @@ operator ~+~
 ** 文中插入block
 *** Inline block
 用 =~= 或 ~=~ 把要顯示在inline block的文字包起來且第一個 ~=~ =~= 前要空白或operator，第二個 ~=~ =~= 之後也是
-*** 引用塊(BEGIN_QUOTE)
+*** 引用塊 =BEGIN_QUOTE=
 輸入 =<q= 然後按 /<TAB>/
-*** 示例塊(BEGIN_EXAMPLE)
+*** 示例塊 =BEGIN_EXAMPLE=
 輸入 =<e= 然後按 /<TAB>/
-*** 代碼塊(BEGIN_SRC)
-輸入 =<s= 然後按 /<TAB>/ ，並且在BEGIN_SRC後空一格，並指定語言(如：C)
+*** 代碼塊 =BEGIN_SRC=
+輸入 =<s= 然後按 /<TAB>/ ，並且在 =BEGIN_SRC後空一格= ，並指定語言(如：C)
 ** In-buffer setting
 在開頭使用各種setting指定此文件的格式，如 ~#+TITLE:~ ~#+AUTHOR:~ ~#+EMAIL:~ ~#+LANGUAGE:~ ~#+DATE:~ ~#+SEQ_TODO:~ ，新加的設定要在line上用 /C-c C-c/ 才會馬上套用(~#+SEQ_TODO:~ 會用到)，查看:https://orgmode.org/manual/In_002dbuffer-settings.html
 ** 其他
-*** /org-indent-mode/  或在file開頭使用 ~#+STARTUP: indent~
+*** /org-indent-mode/ (或在file開頭使用 ~#+STARTUP: indent~)
 任何級別的headline下的plain text的indent是無意義的，要有好的indent可使用org-indent-mode，或在開頭指定setting ~#+STARTUP: indent~

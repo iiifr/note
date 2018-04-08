@@ -2,5 +2,8 @@
 *~
 [#]*[#]
 
-# the html files are just for check the result of org files
+# these files are just for checking the vision output of org files
 *.html
+*.odt
+*.tex
+*.pdf
